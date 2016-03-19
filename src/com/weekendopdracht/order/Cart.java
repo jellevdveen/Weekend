@@ -22,10 +22,7 @@ public abstract class Cart {
 		
 		
 		try {
-			boolean takePossible;
-			takePossible = p.takeFromStock(amount);
-			
-			if (takePossible) {
+			if (p.takeFromStock(amount)) {
 				for (ProductOrder po : shoppingList){
 					if (po.getProductName().equals(p.getName())) {
 						po.setOrderAmount(po.getOrderAmount() + amount);
