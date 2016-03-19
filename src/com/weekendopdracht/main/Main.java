@@ -11,19 +11,19 @@ public class Main {
 		/* seems to work fine, some examples.. maximum amount is 9999 as defined in Stock class, so
 		 * maximum length of the amount part is 4 characters 
 		 */
-		Stock.addTo("Appel", 224, 5, "Default");
-		Stock.addTo("Bungeejumptouw", 46, 6, "Default");
+		Stock.addTo("Appel", -224, 600, "Default");
+		Stock.addTo("Bungeejumptouw", 46, 500, "Default");
 		
 		Stock.addTo("Appel", 3472, 6, "Default");
-		Stock.addTo("Cello", 81, 100, "Default");
+		Stock.addTo("Cello", 81, 5000, "Default");
 		
 		
 		printFormattedStockList(30, 10, 10, 15);
 		
-		if (!Cart.order(Stock.getFullStock().get(1), 2)) {
+		if (!Cart.order(Stock.getFullStock().get(0), 2)) {
 			System.out.println("Order failed, not enough items in stock.");
 		}
-		if (!Cart.order(Stock.getFullStock().get(2), 67)) {
+		if (!Cart.order(Stock.getFullStock().get(0), 67)) {
 			System.out.println("Order failed, not enough items in stock.");
 		}
 		

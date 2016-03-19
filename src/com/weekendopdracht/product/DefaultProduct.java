@@ -4,6 +4,7 @@ public class DefaultProduct extends Product {
 	private String name;
 	private int stock;
 	private int costPerUnit;
+	private int taxPercentage = 19;
 	
 	// constructor(s)
 	public DefaultProduct(String name, int stock, int costPerUnit) {
@@ -16,7 +17,7 @@ public class DefaultProduct extends Product {
 	// setters
 	
 	// perhaps default access would suffice
-	public void setStock(int stock) {
+	public void setStockTo(int stock) {
 		this.stock = stock;
 	}
 	
@@ -40,8 +41,12 @@ public class DefaultProduct extends Product {
 		return this.stock; 
 	}
 	
-	public int getCostPerUnit(){
+	public int getCostPerUnit() {
 		return this.costPerUnit;
+	}
+	
+	public int getTaxPercentage() {
+		return this.taxPercentage;
 	}
 
 	

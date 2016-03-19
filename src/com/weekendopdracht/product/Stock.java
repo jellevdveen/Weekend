@@ -30,7 +30,12 @@ public abstract class Stock {
 		for (Product p : stockList) {
 			if (p.getName().equals(name)) {
 				if (p.getStock() + amount <= MAX_AMOUNT) {
-					p.setStock(p.getStock() + amount);
+					try {
+						p.setStock(p.getStock() + amount);
+					} catch (IllegalArgumentException IAE) {
+						System.out.println("Cannot set item stock to a negative value.");
+						amount = 0;
+					}
 				} else {
 					System.out.println("Maximal stock of 9999 exceeded, stock set to 9999");
 					amount = MAX_AMOUNT;
@@ -49,35 +54,21 @@ public abstract class Stock {
 		} else if (type.equals("Limited Quantity")){
 			// add Limited Quantity product subclass
 		} else {
-			stockList.add(new DefaultProduct(name, amount, costPerUnit));
+			try{
+				stockList.add(new DefaultProduct(name, amount, costPerUnit));
+			} catch (IllegalArgumentException IAE) {
+				System.out.println("Cannot set item stock to a negative value.");
+				amount = 0;
+			}
 		}
 	}
 	
 	// length unit needs to be implemented
 	public static void print(int lengthName, int lengthCost, int lengthUnit, int lengthAmount) {
-		String tempString;
 		int counter = 0;
 		for (Product p : Stock.getFullStock()) {
 			counter++;
-			tempString = counter + ") " + p.getName();
-	
-			while (tempString.length() < lengthName) {
-				tempString = (tempString + " ");
-				
-			}
-			
-			tempString = tempString + Integer.toString(p.getCostPerUnit());
-			
-			while (tempString.length() < (lengthName + lengthCost + lengthUnit)) {
-				tempString = (tempString + " ");
-			}
-			
-			tempString += Integer.toString((p.getStock()));
-			while (tempString.length() < (lengthName + lengthCost + lengthAmount)) {
-				tempString = (tempString + " ");
-			}
-
-			System.out.println(tempString);
+			System.out.println(counter + ") " + p.toString(lengthName - 3, lengthCost, lengthUnit, lengthAmount));
 		}
 	}
 }

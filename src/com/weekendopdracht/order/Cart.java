@@ -18,8 +18,13 @@ public abstract class Cart {
 	}
 	
 	public static boolean order(Product p, int amount){
-		if (amount <= p.getStock()) {
-			p.setStock(p.getStock() - amount);
+		if (p.takeFromStock(amount)) {
+			for (ProductOrder po : shoppingList){
+				if (po.getProductName().equals(p.getName())) {
+					po.setOrderAmount(po.getOrderAmount() + amount);
+					return true;
+				}
+			}
 			shoppingList.add(new ProductOrder(p, amount));
 			return true;
 		} else {

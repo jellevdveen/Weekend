@@ -12,11 +12,30 @@ public class ProductOrder {
 		this.orderAmount = amount;
 	}
 	
-	public int getCost(boolean taxIncluded) {
-		return (this.orderAmount * this.orderProduct.getCostPerUnit());
+	
+	
+	int getCost(boolean taxIncluded) {
+		return (this.orderProduct.getCost(this.orderAmount, taxIncluded));
+	}
+		
+	int getOrderAmount() {
+		return orderAmount;
 	}
 	
-	public String toString(int lengthName, int lengthAmount, int lengthCost) {
+	String getProductName() {
+		return this.orderProduct.getName();
+	}
+	
+	
+	void setOrderAmount(int amount) {
+		this.orderAmount = amount;
+	}
+	
+	
+	
+	
+	
+	String toString(int lengthName, int lengthAmount, int lengthCost) {
 		String tempString = this.orderProduct.getName();
 		
 		while (tempString.length() < lengthName) {
