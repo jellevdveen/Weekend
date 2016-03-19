@@ -3,10 +3,11 @@ package com.weekendopdracht.product;
 public class DefaultProduct extends Product {
 	private String name;
 	private int stock;
+	private int costPerUnit;
 	
 	// constructor(s)
-	public DefaultProduct(String name, int stock) {
-		super(name, stock);
+	public DefaultProduct(String name, int stock, int costPerUnit) {
+		super(name, stock, costPerUnit);
 	}
 	
 	
@@ -22,6 +23,10 @@ public class DefaultProduct extends Product {
 	void setName(String name) {
 		this.name = name;
 	}
+	
+	void setCostPerUnit(int costPerUnit) {
+		this.costPerUnit = costPerUnit;
+	}
 		
 	
 	
@@ -32,7 +37,11 @@ public class DefaultProduct extends Product {
 	}
 	
 	public int getStock() {
-		return stock; 
+		return this.stock; 
+	}
+	
+	public int getCostPerUnit(){
+		return this.costPerUnit;
 	}
 
 	

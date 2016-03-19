@@ -1,6 +1,5 @@
 package com.weekendopdracht.main;
 
-import com.weekendopdracht.product.Product;
 import com.weekendopdracht.product.Stock;
 
 public class Main {
@@ -8,42 +7,49 @@ public class Main {
 	public static void main(String[] args) {
 		
 		
-		// seems to work fine, some examples
-		Stock.addTo("Appels", 10, "Default");
-		Stock.addTo("Bananen", 10, "Default");
+		/* seems to work fine, some examples.. maximum amount is 9999 as defined in Stock class, so
+		 * maximum length of the amount part is 4 characters 
+		 */
+		Stock.addTo("Appels", 10, 5, "Default");
+		Stock.addTo("Bananen", 10, 6, "Default");
 		
-		Stock.addTo("Appels", 10, "Default");
-		Stock.addTo("Altviolen", 10, "Default");
+		Stock.addTo("Appels", 10, 6, "Default");
+		Stock.addTo("Altviolen", 10, 100, "Default");
 		
-		printFormattedStockList(30);
+		printFormattedStockList(30, 10, 10, 15);
 
 	}
 	
 	// function that shows/will show the full stock in an eye-pleasing way
-	private static void printFormattedStockList(int lengthOfProductName) {
-		drawLine(lengthOfProductName + 11);
+	private static void printFormattedStockList(int lengthOfProductName, int lengthCost, int lengthUnit, int lengthAmount) {
+		drawLine(lengthOfProductName + lengthCost + lengthUnit + lengthAmount);
 		
+		
+		// will have to be neater:
 		String tempString = "Productnaam";
 		
-		for (int i = 0; i + 11 < lengthOfProductName; i++) {
-			tempString = tempString.concat(" ");
+		while (tempString.length() < lengthOfProductName) {
+			tempString = (tempString + " ");
 		}
-		System.out.println(tempString + "Hoeveelheid");
+		tempString = (tempString + "Prijs");
 		
-		
-		drawLine(lengthOfProductName + 11);
-		
-		
-		for (Product p : Stock.getFullStock()) {
-			tempString = p.getName();
-		
-			for (int i = 0; i + p.getName().length() < lengthOfProductName; i++) {
-				tempString = tempString.concat(" ");
-			}
-			System.out.println(tempString + p.getStock());
+		while (tempString.length() < lengthOfProductName + lengthCost + lengthUnit) {
+			tempString = (tempString + " ");
 		}
+		tempString = (tempString + "Hoeveelheid");
 		
-		drawLine(lengthOfProductName + 11);
+		while (tempString.length() < lengthOfProductName + lengthCost + lengthUnit + lengthAmount) {
+			tempString = (tempString + " ");
+		}
+		System.out.println(tempString);
+		
+		
+		
+		drawLine(tempString.length());
+		
+		Stock.print(lengthOfProductName, lengthCost, lengthUnit, lengthAmount);
+		
+		drawLine(tempString.length());
 	}
 	
 	private static void drawLine(int length){
