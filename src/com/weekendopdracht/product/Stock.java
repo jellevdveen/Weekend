@@ -56,8 +56,10 @@ public abstract class Stock {
 	// length unit needs to be implemented
 	public static void print(int lengthName, int lengthCost, int lengthUnit, int lengthAmount) {
 		String tempString;
+		int counter = 0;
 		for (Product p : Stock.getFullStock()) {
-			tempString = p.getName();
+			counter++;
+			tempString = counter + ") " + p.getName();
 	
 			while (tempString.length() < lengthName) {
 				tempString = (tempString + " ");

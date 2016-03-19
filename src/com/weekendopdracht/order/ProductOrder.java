@@ -5,10 +5,7 @@ import com.weekendopdracht.product.Product;
 public class ProductOrder {
 	private Product orderProduct;
 	private int orderAmount;
-	
-	// for testing purposes set to 10
-	private int cost = 10;
-	
+
 	
 	ProductOrder(Product p, int amount) {
 		this.orderProduct = p;
@@ -16,7 +13,7 @@ public class ProductOrder {
 	}
 	
 	public int getCost(boolean taxIncluded) {
-		return cost;
+		return (this.orderAmount * this.orderProduct.getCostPerUnit());
 	}
 	
 	public String toString(int lengthName, int lengthAmount, int lengthCost) {
