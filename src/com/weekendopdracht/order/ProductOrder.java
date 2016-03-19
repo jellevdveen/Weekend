@@ -11,8 +11,7 @@ public class ProductOrder {
 		this.orderProduct = p;
 		this.orderAmount = amount;
 	}
-	
-	
+		
 	
 	int getCost(boolean taxIncluded) {
 		return (this.orderProduct.getCost(this.orderAmount, taxIncluded));

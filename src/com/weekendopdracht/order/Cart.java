@@ -17,19 +17,33 @@ public abstract class Cart {
 		return totalCost;
 	}
 	
+
 	public static boolean order(Product p, int amount){
-		if (p.takeFromStock(amount)) {
-			for (ProductOrder po : shoppingList){
-				if (po.getProductName().equals(p.getName())) {
-					po.setOrderAmount(po.getOrderAmount() + amount);
-					return true;
+		
+		
+		try {
+			boolean takePossible;
+			takePossible = p.takeFromStock(amount);
+			
+			if (takePossible) {
+				for (ProductOrder po : shoppingList){
+					if (po.getProductName().equals(p.getName())) {
+						po.setOrderAmount(po.getOrderAmount() + amount);
+						return true;
+					}
 				}
+				shoppingList.add(new ProductOrder(p, amount));
+				return true;
+			} else {
+				return false;
 			}
-			shoppingList.add(new ProductOrder(p, amount));
-			return true;
-		} else {
+		} catch (IllegalArgumentException IAE) {
+			System.out.println("Cannot order a negative amount of products");
 			return false;
 		}
+		
+		
+		
 	}
 	
 	public static void printOrders(int lengthName, int lengthAmount, int lengthCost) {

@@ -1,6 +1,3 @@
-// perhaps all members here could be inserted as abstract members of the class 'Product'
-
-
 package com.weekendopdracht.product;
 
 import java.util.ArrayList;
@@ -8,11 +5,11 @@ import java.util.ArrayList;
 
 
 public abstract class Stock {
+	// in de arraylist Stock.stockList zijn alle products opgeslagen 
 	private static ArrayList<Product> stockList = new ArrayList<Product>();
 	private static final int MAX_AMOUNT = 9999;
 	
-	
-	
+		
 	// getter
 	public static ArrayList<Product> getFullStock() {
 		return stockList;
@@ -20,7 +17,7 @@ public abstract class Stock {
 	
 	
 	
-	
+	// voegt een aantal toe aan een product als het in de lijst staat. Maakt een nieuw product als dit niet zo is
 	public static void addTo(String name, int amount, int costPerUnit, String type) {
 		if (amount > MAX_AMOUNT) {
 			System.out.println("Maximal stock of 9999 exceeded, stock set to 9999");

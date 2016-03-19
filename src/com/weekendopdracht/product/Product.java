@@ -56,8 +56,10 @@ public abstract class Product {
 	
 	
 	
-	public boolean takeFromStock(int amount) {
-		if (amount < getStock()) {
+	public boolean takeFromStock(int amount) throws IllegalArgumentException {
+		if (amount < 0) {
+			throw new IllegalArgumentException();
+		} else if (amount < getStock()) {
 			setStock(getStock() - amount);
 			return true;
 		}

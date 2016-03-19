@@ -11,15 +11,24 @@ public class Main {
 		/* seems to work fine, some examples.. maximum amount is 9999 as defined in Stock class, so
 		 * maximum length of the amount part is 4 characters 
 		 */
+		
+		// in de arraylist Stock.stockList zijn alle products opgeslagen, hier worden er wat producten toegevoegd
+		// als we tijd teveel hebben kunnen we hier ook een user interface voor maken
 		Stock.addTo("Appel", -224, 600, "Default");
 		Stock.addTo("Bungeejumptouw", 46, 500, "Default");
 		
 		Stock.addTo("Appel", 3472, 6, "Default");
 		Stock.addTo("Cello", 81, 5000, "Default");
 		
-		
+		// dit print een goed uitziende lijst producten
 		printFormattedStockList(30, 10, 10, 15);
 		
+		/* hier worden als test wat producten besteld... hiervoor moet dus een user interface worden gemaakt
+		 * waarin de user een nummer (geprint door bovenstaande method printFormattedStockList) invoert en
+		 * aan de hand van dit nummer (min één, want stock.stockList is zero-based) een product wordt 
+		 * opgezocht in de stockList en deze wordt doorgegeven aan Cart.order, waar het in de winkelwagen
+		 * wordt gezet
+		 */
 		if (!Cart.order(Stock.getFullStock().get(0), 2)) {
 			System.out.println("Order failed, not enough items in stock.");
 		}
@@ -27,13 +36,14 @@ public class Main {
 			System.out.println("Order failed, not enough items in stock.");
 		}
 		
+		// dit print een netjes geformatteerd bestelwagentje
 		printCart(30, 15, 10);
 		
 
 	}
 	
 	/* function that shows/will show the full stock in an eye-pleasing way..
-	 * the method parameters represent the width of the columns
+	 * -------    the method parameters represent the width of the columns!!!!       -----------------
 	 */
 	private static void printFormattedStockList(int lengthOfProductName, int lengthCost, int lengthUnit, int lengthAmount) {
 		drawLine(lengthOfProductName + lengthCost + lengthUnit + lengthAmount);
@@ -68,6 +78,8 @@ public class Main {
 		Cart.printTotal(lengthName, lengthAmount);
 	}
 	
+	
+	//draws a line made up of -s
 	private static void drawLine(int length){
 		String tempString = "";
 		for (int i = 0; i < length; i++) {
