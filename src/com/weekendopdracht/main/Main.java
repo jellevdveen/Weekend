@@ -1,5 +1,7 @@
 package com.weekendopdracht.main;
 
+import java.util.Scanner;
+
 import com.weekendopdracht.order.Cart;
 import com.weekendopdracht.product.Stock;
 
@@ -101,4 +103,9 @@ public class Main {
 		System.out.println(tempString);
 	}
 
+	private static String askQuestion(String question) {
+		System.out.println(question);
+		Scanner s = new Scanner(System.in);
+		return s.next();
+	}
 }
