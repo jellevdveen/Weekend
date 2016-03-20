@@ -59,7 +59,7 @@ public abstract class Product {
 		
 	public final void setStock(int stock) throws NegativeValueException {
 		if (stock < 0) {
-			throw new NegativeValueException("Cannot set stock to negative amount");
+			throw new NegativeValueException("Voorraad kan niet negatief worden");
 		} else {
 			setStockTo(stock);
 		}
@@ -67,11 +67,11 @@ public abstract class Product {
 		
 	public void takeFromStock(int amount) throws NegativeValueException, StockExceededException {
 		if (amount < 0) {
-			throw new NegativeValueException("Cannot take a negative amount of products from stock.");
+			throw new NegativeValueException("Kan geen negatief aantal producten uit voorraad halen");
 		} else if (amount < getStock()) {
 			setStock(getStock() - amount);
 		} else {
-			throw new StockExceededException("Not enough items in stock");
+			throw new StockExceededException("Niet genoeg producten op voorraad");
 		}
 	}
 	

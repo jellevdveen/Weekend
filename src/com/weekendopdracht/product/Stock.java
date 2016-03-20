@@ -21,7 +21,10 @@ public abstract class Stock {
 	
 	// voegt een aantal toe aan een product als het in de lijst staat. Maakt een nieuw product als dit niet zo is
 	public static void addTo(String name, int amount, int costPerUnit, int unit, String type) {
-		
+		if ((amount < 0) || (costPerUnit < 0)) {
+			System.out.println("Negatieve prijs/hoeveelheid niet toegestaan");
+			return;
+		}
 		// for loop die naar bekende producten zoekt
 		for (Product p : stockList) {
 			if (p.getName().equals(name)) {
@@ -33,7 +36,7 @@ public abstract class Stock {
 						amount = 0;
 					}
 				} else {
-					System.out.println("Maximal stock of 9999 exceeded, stock set to 9999");
+					System.out.println("Maximale vooraad van 9999 overschreden, naar 9999 gezet");
 					amount = MAX_AMOUNT;
 				}
 				
@@ -43,23 +46,23 @@ public abstract class Stock {
 		
 		
 		if (amount > MAX_AMOUNT) {
-			System.out.println("Maximal stock of 9999 exceeded, stock set to 9999");
+			System.out.println("Maximale vooraad van 9999 overschreden, naar 9999 gezet");
 			amount = MAX_AMOUNT;
 		}
 		
 		
 		// maakt nieuw product
-		if (type.equals("Bulk Discount")) {
-			// add Bulk Discount product subclass
-		} else if (type.equals("Limited Quantity")){
-			// add Limited Quantity product subclass
-		} else {
-			try{
+		try{
+			if (type.equals("Bulk Discount")) {
+				// add Bulk Discount product subclass
+			} else if (type.equals("Limited Quantity")){
+				// add Limited Quantity product subclass
+			} else {
 				stockList.add(new DefaultProduct(name, amount, costPerUnit, unit));
-			} catch (NegativeValueException NVE) {
-				System.out.println(NVE.getMessage());
-				amount = 0;
-			}
+			} 
+		}	catch (NegativeValueException NVE) {
+			System.out.println(NVE.getMessage());
+			amount = 0;
 		}
 	}
 	

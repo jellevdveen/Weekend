@@ -26,31 +26,12 @@ public class Main {
 		Scanner inputScanner = new Scanner(System.in);
 		Cart cart1 = new Cart();
 		
-		System.out.println(askOrder(0, inputScanner));	
-		
-		
-		/* hier worden als test wat producten besteld... hiervoor moet dus een user interface worden gemaakt
-		 * waarin de user een nummer (geprint door bovenstaande method printFormattedStockList) invoert en
-		 * aan de hand van dit nummer (min één, want stock.stockList is zero-based) een product wordt 
-		 * opgezocht in de stockList en deze wordt doorgegeven aan Cart.order, waar het in de winkelwagen
-		 * wordt gezet
-		 */
-		
-		System.out.println("\n");
+		menuOrder(inputScanner, cart1);
 		
 		
 		
 		
-		cart1.order(Stock.getFullStock().get(0), 2);
-		cart1.order(Stock.getFullStock().get(0), -67);
-		cart1.order(Stock.getFullStock().get(1), 67);
 		
-		System.out.println("\n");
-		
-		// dit print een netjes geformatteerd bestelwagentje
-		printCart(cart1, 30, 15, 15);
-		
-		inputScanner.close();
 
 	}
 	
@@ -116,11 +97,12 @@ public class Main {
 		
 	}
 
+	
 	private static String askOrder(int counter, Scanner inputScanner) {
 		if (counter % 4 == 0) {
 			printFormattedStockList(40, 10, 20, 15);
 		}
-		String answer = askQuestion("What do you want to order? (1-" + Stock.getFullStock().size() + ")\nToets Q om af te sluiten of W om naar winkelwagentje te gaan.", inputScanner);
+		String answer = askQuestion("Wat wil je bestellen? (1-" + Stock.getFullStock().size() + ")\nToets Q om af te sluiten of W om naar winkelwagentje te gaan.", inputScanner);
 		try {
 			if (answer.equals("q") || answer.equals("Q")) {
 				return "Quit";			
@@ -140,5 +122,68 @@ public class Main {
 		}
 	}
 	
+	private static void menuOrder(Scanner inputScanner, Cart cart) {
+		String choice = (askOrder(0, inputScanner));	
+		try {
+			switch (choice){
+			case "Quit"	:	System.exit(0);
+							break;
+			case "Cart" :	menuCart(inputScanner, cart);
+							break;
+			default		:	cart.order(Stock.getFullStock().get(Integer.valueOf(choice) - 1), Integer.valueOf(askQuestion("Hoeveel?", inputScanner)));
+							menuCart(inputScanner, cart);
+			}
+		} catch (NumberFormatException NFE) {
+			System.out.println("Geen geldige hoeveelheid");
+		}
+	}
 	
+	
+	private static String askCart(int counter, Scanner inputScanner, Cart cart) {
+		if (counter % 4 == 0) {
+			printCart(cart, 30, 20, 15);
+		}
+		String answer = askQuestion("Wat wil je doen? Orderhoeveelheid aanpassen (A),\nAndere producten bestellen (B), Order versturen (V) of afsluiten (Q)?", inputScanner);
+		if (answer.equals("a") || answer.equals("A")) {
+			return "Change";			
+		} else if (answer.equals("b") || answer.equals("B")) {
+			return "Order";
+		} else if (answer.equals("v") || answer.equals("V")) {
+			return "Send";
+		} else if (answer.equals("q") || answer.equals("Q")) {
+			return "Quit";
+		} else {
+			counter++;
+			System.out.println("Geen geldig antwoord!");
+			return askCart(counter, inputScanner, cart);
+		}
+	}
+
+	private static void changeCart(int counter, Scanner inputScanner, Cart cart) {
+		try {
+			
+		} catch (NumberFormatException NFE) {
+			counter++;
+			System.out.println("Geen geldig antwoord!");
+			changeCart(counter, inputScanner, cart);
+		}
+	}
+	
+	private static void menuCart(Scanner inputScanner, Cart cart) {
+		String choice = (askCart(0, inputScanner, cart));	
+		switch (choice){
+		case "Quit"	:	System.exit(0);
+						break;
+		case "Send" :	askCart(0, inputScanner, cart);
+						System.exit(0);
+						break;
+		case "Order":	menuOrder(inputScanner, cart);
+						break;
+		case "Change":	changeCart(0, inputScanner, cart);
+						break;
+		default		:	System.out.println("Onbekende fout!");
+						System.exit(0);
+						break;
+		}
+	}
 }
