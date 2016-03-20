@@ -68,7 +68,7 @@ public abstract class Product {
 	public void takeFromStock(int amount) throws NegativeValueException, StockExceededException {
 		if (amount < 0) {
 			throw new NegativeValueException("Kan geen negatief aantal producten uit voorraad halen");
-		} else if (amount < getStock()) {
+		} else if (amount <= getStock()) {
 			setStock(getStock() - amount);
 		} else {
 			throw new StockExceededException("Niet genoeg producten op voorraad");

@@ -25,6 +25,10 @@ public class ProductOrder {
 		return this.orderProduct.getName();
 	}
 	
+	Product getOrderProduct() {
+		return this.orderProduct;
+	}
+	
 	
 	void setOrderAmount(int amount) {
 		this.orderAmount = amount;

@@ -7,7 +7,7 @@ Repository voor de weekendopdracht van YCP java traineeship maart 2016
 19-03
 current work:
 
--- working on removal of items from cart (zo 13.30)
+-- 
 
 
 
@@ -17,9 +17,6 @@ current work:
 to do on short term:
 
 
--- make user interface to allow user to add products to cart from 	command line
-
--- allow removal of items from cart
 
 -- meer subclasses van product
 

@@ -161,6 +161,27 @@ public class Main {
 
 	private static void changeCart(int counter, Scanner inputScanner, Cart cart) {
 		try {
+			if (counter % 4 == 0) {
+				printCart(cart, 30, 20, 15);
+			}
+			int productChoice = Integer.valueOf(askQuestion("Van welk product wil je bestelling wijzigen? (1 - " + cart.getSize() + ")", inputScanner));
+			if ((productChoice > 0) && (productChoice < Stock.getFullStock().size())){
+				int targetValue = Integer.valueOf(askQuestion("Naar welk aantal wil je deze bestelling veranderen?", inputScanner));
+				if (targetValue >= 0) {
+					cart.change(productChoice, targetValue);
+				} else {
+					counter++;
+					System.out.println("Geen geldig antwoord!");
+					changeCart(counter, inputScanner, cart);
+				}
+			} else {
+				counter++;
+				System.out.println("Geen geldig antwoord!");
+				changeCart(counter, inputScanner, cart);
+			}
+			
+			
+			
 			
 		} catch (NumberFormatException NFE) {
 			counter++;
@@ -174,12 +195,17 @@ public class Main {
 		switch (choice){
 		case "Quit"	:	System.exit(0);
 						break;
-		case "Send" :	askCart(0, inputScanner, cart);
+		case "Send" :	System.out.println("Dank voor uw bestelling");
 						System.exit(0);
 						break;
 		case "Order":	menuOrder(inputScanner, cart);
 						break;
-		case "Change":	changeCart(0, inputScanner, cart);
+		case "Change":	if (cart.getSize() > 0) {
+							changeCart(0, inputScanner, cart);
+						} else {
+							System.out.println("Geen objecten in winkelwagen");
+						}
+						menuCart(inputScanner, cart);
 						break;
 		default		:	System.out.println("Onbekende fout!");
 						System.exit(0);

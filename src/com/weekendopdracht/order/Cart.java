@@ -18,7 +18,12 @@ public class Cart {
 		return totalCost;
 	}
 	
+	public int getSize() {
+		return shoppingList.size();
+	}
 
+	
+	
 	public boolean order(Product p, int amount){
 		
 		
@@ -44,9 +49,32 @@ public class Cart {
 		
 	}
 	
+	public void remove(ProductOrder p, int amount){
+		if (p.getOrderAmount() - amount <= 0) {
+			this.shoppingList.remove(p);
+		} else {
+			p.setOrderAmount(p.getOrderAmount() - amount);
+		}
+		
+		
+	}
+	
+	public void change(int productID, int amount){
+		if (amount < this.shoppingList.get(productID - 1).getOrderAmount()) {
+			this.remove(this.shoppingList.get(productID - 1), this.shoppingList.get(productID - 1).getOrderAmount() - amount);
+		} else if (amount > this.shoppingList.get(productID - 1).getOrderAmount()) {
+			this.order(this.shoppingList.get(productID - 1).getOrderProduct(), (amount - this.shoppingList.get(productID - 1).getOrderAmount()));
+		}
+	}
+	
+	
+	
+	
 	public void printOrders(int lengthName, int lengthAmount, int lengthCost) {
+		int counter = 0;
 		for (ProductOrder p : this.shoppingList) {
-			System.out.println(p.toString(lengthName, lengthAmount, lengthCost));
+			counter++;
+			System.out.println(counter + ") " + p.toString(lengthName-3, lengthAmount, lengthCost));
 		}
 	}
 	
