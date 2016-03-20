@@ -37,8 +37,6 @@ public class DefaultProduct extends Product {
 	
 	void setUnitName(int unitID) {
 		switch (unitID) {
-		case stuk	:	this.unitName = "stuk";
-						break;
 		case gram	:	this.unitName = "gram";
 						break;
 		case kilo	:	this.unitName = "kilo";
@@ -47,6 +45,7 @@ public class DefaultProduct extends Product {
 						break;
 		case pak	:	this.unitName = "pak";
 						break;
+		case stuk	:	
 		default		:	this.unitName = "stuk";
 						
 		}

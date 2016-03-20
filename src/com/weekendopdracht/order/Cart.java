@@ -1,7 +1,6 @@
 package com.weekendopdracht.order;
 
 import java.util.ArrayList;
-
 import com.weekendopdracht.exception.NegativeValueException;
 import com.weekendopdracht.exception.StockExceededException;
 import com.weekendopdracht.product.Product;

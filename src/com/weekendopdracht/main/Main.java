@@ -24,8 +24,10 @@ public class Main {
 		
 		System.out.println("\n");
 		
-		// dit print een goed uitziende lijst producten
-		printFormattedStockList(30, 7, 20, 15);
+		Cart cart1 = new Cart();
+		
+		System.out.println(askOrder(0));	
+		
 		
 		/* hier worden als test wat producten besteld... hiervoor moet dus een user interface worden gemaakt
 		 * waarin de user een nummer (geprint door bovenstaande method printFormattedStockList) invoert en
@@ -36,7 +38,9 @@ public class Main {
 		
 		System.out.println("\n");
 		
-		Cart cart1 = new Cart();
+		
+		
+		
 		cart1.order(Stock.getFullStock().get(0), 2);
 		cart1.order(Stock.getFullStock().get(0), -67);
 		cart1.order(Stock.getFullStock().get(1), 67);
@@ -104,8 +108,42 @@ public class Main {
 	}
 
 	private static String askQuestion(String question) {
-		System.out.println(question);
 		Scanner s = new Scanner(System.in);
-		return s.next();
+		System.out.println(question);
+		String answer = "";
+		while (!s.hasNext()) {
+
+		}
+		answer = s.next();
+		
+		s.close();
+		return answer;
+		
 	}
+
+	private static String askOrder(int counter) {
+		if (counter % 5 == 0) {
+			printFormattedStockList(40, 10, 20, 15);
+		}
+		String answer = askQuestion("What do you want to order? (1-" + Stock.getFullStock().size() + ")\nToets Q om af te sluiten of W om naar winkelwagentje te gaan.");
+		try {
+			if (answer.equals("q") || answer.equals("Q")) {
+				return "Quit";			
+			} else if (answer.equals("w") || answer.equals("W")) {
+				return "Cart";
+			} else if ((0 < Integer.parseInt(answer)) && (Integer.parseInt(answer) <= Stock.getFullStock().size())) {
+				return answer;
+			} else {
+				counter++;
+				System.out.println("Geen geldig antwoord!");
+				return askOrder(counter);
+			}
+		} catch (NumberFormatException NFE) {
+			counter++;
+			System.out.println("Geen geldig antwoord!");
+			return askOrder(counter);
+		}
+	}
+	
+	
 }
