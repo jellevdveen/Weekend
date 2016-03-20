@@ -42,7 +42,7 @@ public class ProductOrder {
 			
 		}
 		
-		tempString = tempString + Integer.toString(this.orderAmount);
+		tempString = tempString + Integer.toString(this.orderAmount) + " " + this.orderProduct.getUnitName();
 		
 		while (tempString.length() < (lengthName + lengthAmount)) {
 			tempString = (tempString + " ");

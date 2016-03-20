@@ -7,10 +7,14 @@ public class DefaultProduct extends Product {
 	private int stock;
 	private int costPerUnit;
 	private int taxPercentage = 19;
+	private String unitName;
 	
 	// constructor(s)
 	public DefaultProduct(String name, int stock, int costPerUnit) throws NegativeValueException {
 		super(name, stock, costPerUnit);
+	}
+	public DefaultProduct(String name, int stock, int costPerUnit, int unit) throws NegativeValueException {
+		super(name, stock, costPerUnit, unit);
 	}
 	
 	
@@ -29,6 +33,23 @@ public class DefaultProduct extends Product {
 	
 	void setCostPerUnit(int costPerUnit) {
 		this.costPerUnit = costPerUnit;
+	}
+	
+	void setUnitName(int unitID) {
+		switch (unitID) {
+		case stuk	:	this.unitName = "stuk";
+						break;
+		case gram	:	this.unitName = "gram";
+						break;
+		case kilo	:	this.unitName = "kilo";
+						break;
+		case liter	:	this.unitName = "liter";
+						break;
+		case pak	:	this.unitName = "pak";
+						break;
+		default		:	this.unitName = "stuk";
+						
+		}
 	}
 		
 	
@@ -51,5 +72,8 @@ public class DefaultProduct extends Product {
 		return this.taxPercentage;
 	}
 
+	public String getUnitName() {
+		return this.unitName;
+	}
 	
 }

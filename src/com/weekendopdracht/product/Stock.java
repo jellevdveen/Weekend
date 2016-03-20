@@ -20,8 +20,9 @@ public abstract class Stock {
 	
 	
 	// voegt een aantal toe aan een product als het in de lijst staat. Maakt een nieuw product als dit niet zo is
-	public static void addTo(String name, int amount, int costPerUnit, String type) {
-				
+	public static void addTo(String name, int amount, int costPerUnit, int unit, String type) {
+		
+		// for loop die naar bekende producten zoekt
 		for (Product p : stockList) {
 			if (p.getName().equals(name)) {
 				if (p.getStock() + amount <= MAX_AMOUNT) {
@@ -47,13 +48,14 @@ public abstract class Stock {
 		}
 		
 		
+		// maakt nieuw product
 		if (type.equals("Bulk Discount")) {
 			// add Bulk Discount product subclass
 		} else if (type.equals("Limited Quantity")){
 			// add Limited Quantity product subclass
 		} else {
 			try{
-				stockList.add(new DefaultProduct(name, amount, costPerUnit));
+				stockList.add(new DefaultProduct(name, amount, costPerUnit, unit));
 			} catch (NegativeValueException NVE) {
 				System.out.println(NVE.getMessage());
 				amount = 0;
@@ -61,7 +63,15 @@ public abstract class Stock {
 		}
 	}
 	
-	// length unit needs to be implemented
+	
+	// overloaded method voor als er geen unit wordt meegegeven
+	public static void addTo(String name, int amount, int costPerUnit, String type) {
+		addTo(name, amount, costPerUnit, 1, type);
+	}
+	
+	
+	
+	
 	public static void print(int lengthName, int lengthCost, int lengthUnit, int lengthAmount) {
 		int counter = 0;
 		for (Product p : Stock.getFullStock()) {

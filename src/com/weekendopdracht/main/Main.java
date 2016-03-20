@@ -14,16 +14,16 @@ public class Main {
 		
 		// in de arraylist Stock.stockList zijn alle products opgeslagen, hier worden er wat producten toegevoegd
 		// als we tijd teveel hebben kunnen we hier ook een user interface voor maken
-		Stock.addTo("Appel", 224, 600, "Default");
-		Stock.addTo("Bungeejumptouw", 46, 500, "Default");
+		Stock.addTo("Appel", 224, 600, 2, "Default");
+		Stock.addTo("Bungeejumptouw", 46, 500, 4, "Default");
 		
-		Stock.addTo("Appel", -3472, 6, "Default");
+		Stock.addTo("Appel", -22, 6, "Default");
 		Stock.addTo("Cello", 81, 5000, "Default");
 		
 		System.out.println("\n");
 		
 		// dit print een goed uitziende lijst producten
-		printFormattedStockList(30, 10, 10, 15);
+		printFormattedStockList(30, 7, 20, 15);
 		
 		/* hier worden als test wat producten besteld... hiervoor moet dus een user interface worden gemaakt
 		 * waarin de user een nummer (geprint door bovenstaande method printFormattedStockList) invoert en
@@ -41,7 +41,7 @@ public class Main {
 		System.out.println("\n");
 		
 		// dit print een netjes geformatteerd bestelwagentje
-		printCart(30, 15, 10);
+		printCart(30, 15, 15);
 		
 
 	}
@@ -57,12 +57,12 @@ public class Main {
 		while (tempString.length() < lengthOfProductName) {
 			tempString = (tempString + " ");
 		}
-		tempString = (tempString + "Prijs");
+		tempString = (tempString + "Prijs (ex. BTW)");
 		
 		while (tempString.length() < lengthOfProductName + lengthCost + lengthUnit) {
 			tempString = (tempString + " ");
 		}
-		tempString = (tempString + "Hoeveelheid");
+		tempString = (tempString + "Voorraad");
 		
 		while (tempString.length() < lengthOfProductName + lengthCost + lengthUnit + lengthAmount) {
 			tempString = (tempString + " ");
@@ -75,7 +75,15 @@ public class Main {
 	}
 	
 	private static void printCart(int lengthName, int lengthAmount, int lengthCost){
-		System.out.println("Winkelwagentje");
+		String tempString = "Winkelwagentje";
+		while (tempString.length() < lengthName + lengthAmount) {
+			tempString = tempString + " ";
+		}
+		
+		tempString = tempString + "Prijs (ex. BTW)";
+		
+		
+		System.out.println(tempString);
 		drawLine(lengthName + lengthAmount + lengthCost);
 		Cart.printOrders(lengthName, lengthAmount, lengthCost);
 		drawLine(lengthName + lengthAmount + lengthCost);
