@@ -19,8 +19,11 @@ current work:
 to do on short term:
 
 -- add Units as product properties and insert these in 	Product.toString
+
 -- make user interface to allow user to add products to cart from 	command line
+
 -- allow removal of items from cart
+
 -- meer subclasses van product
 
 
@@ -29,6 +32,9 @@ to do on short term:
 later:
 
 -- deel 3: bezorging
+
+-- Stock opslaat in txt.file of database
+
 -- kleine user interface om voorraad te beheren, met als eerst een kort menu dat je vraagt of je klant of beheerder bent.
 
 
