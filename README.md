@@ -11,7 +11,9 @@ current work:
 
 -- Working on ProductOrder and Cart (za - 19.45)            --done
 
--- working on new Exceptions (zo - 12.00)
+-- working on new Exceptions (zo - 12.00)		    --done
+
+-- working on Units (zo - 13.00)
 
 
 
@@ -28,7 +30,6 @@ to do on short term:
 
 -- meer subclasses van product
 
--- add custom exception class(es)
 
 
 
