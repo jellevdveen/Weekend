@@ -12,7 +12,6 @@ public abstract class Product {
 	
 	
 	// Constructors
-	
 	Product(String name, int stock, int costPerUnit) throws NegativeValueException {
 		this(name, stock, costPerUnit, 0);
 	}

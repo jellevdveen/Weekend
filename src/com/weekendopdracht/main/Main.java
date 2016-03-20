@@ -34,14 +34,15 @@ public class Main {
 		
 		System.out.println("\n");
 		
-		Cart.order(Stock.getFullStock().get(0), 2);
-		Cart.order(Stock.getFullStock().get(0), -67);
-		Cart.order(Stock.getFullStock().get(1), 67);
+		Cart cart1 = new Cart();
+		cart1.order(Stock.getFullStock().get(0), 2);
+		cart1.order(Stock.getFullStock().get(0), -67);
+		cart1.order(Stock.getFullStock().get(1), 67);
 		
 		System.out.println("\n");
 		
 		// dit print een netjes geformatteerd bestelwagentje
-		printCart(30, 15, 15);
+		printCart(cart1, 30, 15, 15);
 		
 
 	}
@@ -74,7 +75,7 @@ public class Main {
 		drawLine(tempString.length());
 	}
 	
-	private static void printCart(int lengthName, int lengthAmount, int lengthCost){
+	private static void printCart(Cart cart, int lengthName, int lengthAmount, int lengthCost){
 		String tempString = "Winkelwagentje";
 		while (tempString.length() < lengthName + lengthAmount) {
 			tempString = tempString + " ";
@@ -85,9 +86,9 @@ public class Main {
 		
 		System.out.println(tempString);
 		drawLine(lengthName + lengthAmount + lengthCost);
-		Cart.printOrders(lengthName, lengthAmount, lengthCost);
+		cart.printOrders(lengthName, lengthAmount, lengthCost);
 		drawLine(lengthName + lengthAmount + lengthCost);
-		Cart.printTotal(lengthName, lengthAmount);
+		cart.printTotal(lengthName, lengthAmount);
 	}
 	
 	
