@@ -24,6 +24,8 @@ to do on short term:
 
 -- objecten waar niks meer van in voorraad is weghalen uit lijst
 
+-- methoden om belastingpercentage in te stellen
+
 
 
 

@@ -69,11 +69,11 @@ public abstract class Stock {
 	
 	// overloaded method voor als er geen unit wordt meegegeven
 	public static void addTo(String name, int amount, int costPerUnit, String type) {
-		addTo(name, amount, costPerUnit, 1, type);
+		addTo(name, amount, costPerUnit, 0, type);
 	}
 	
 	public static void addTo(String name, int amount, int costPerUnit) {
-		addTo(name, amount, costPerUnit, 1, "Default");
+		addTo(name, amount, costPerUnit, 0, "Default");
 	}
 	
 	

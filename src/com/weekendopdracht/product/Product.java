@@ -51,7 +51,7 @@ public abstract class Product {
 	
 	
 	// setters
-	public abstract void setStockTo(int stock);
+	protected abstract void setStockTo(int stock);
 	// without a setName function, having a name input in the constructor is utterly useless
 	abstract void setName(String name);
 	abstract void setCostPerUnit(int costPerUnit);

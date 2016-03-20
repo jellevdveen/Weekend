@@ -23,7 +23,7 @@ public class DefaultProduct extends Product {
 	// setters
 	
 	// perhaps default access would suffice
-	public void setStockTo(int stock) {
+	protected void setStockTo(int stock) {
 		this.stock = stock;
 	}
 	
