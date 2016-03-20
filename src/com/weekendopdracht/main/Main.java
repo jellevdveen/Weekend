@@ -14,11 +14,13 @@ public class Main {
 		
 		// in de arraylist Stock.stockList zijn alle products opgeslagen, hier worden er wat producten toegevoegd
 		// als we tijd teveel hebben kunnen we hier ook een user interface voor maken
-		Stock.addTo("Appel", -224, 600, "Default");
+		Stock.addTo("Appel", 224, 600, "Default");
 		Stock.addTo("Bungeejumptouw", 46, 500, "Default");
 		
-		Stock.addTo("Appel", 3472, 6, "Default");
+		Stock.addTo("Appel", -3472, 6, "Default");
 		Stock.addTo("Cello", 81, 5000, "Default");
+		
+		System.out.println("\n");
 		
 		// dit print een goed uitziende lijst producten
 		printFormattedStockList(30, 10, 10, 15);
@@ -29,12 +31,14 @@ public class Main {
 		 * opgezocht in de stockList en deze wordt doorgegeven aan Cart.order, waar het in de winkelwagen
 		 * wordt gezet
 		 */
-		if (!Cart.order(Stock.getFullStock().get(0), 2)) {
-			System.out.println("Order failed, not enough items in stock.");
-		}
-		if (!Cart.order(Stock.getFullStock().get(0), 67)) {
-			System.out.println("Order failed, not enough items in stock.");
-		}
+		
+		System.out.println("\n");
+		
+		Cart.order(Stock.getFullStock().get(0), 2);
+		Cart.order(Stock.getFullStock().get(0), -67);
+		Cart.order(Stock.getFullStock().get(1), 67);
+		
+		System.out.println("\n");
 		
 		// dit print een netjes geformatteerd bestelwagentje
 		printCart(30, 15, 10);

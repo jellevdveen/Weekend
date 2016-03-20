@@ -1,11 +1,14 @@
 package com.weekendopdracht.product;
 
+import com.weekendopdracht.exception.NegativeValueException;
+import com.weekendopdracht.exception.StockExceededException;
+
 public abstract class Product {
 	
 	
 	// Constructors
 	
-	Product(String name, int stock, int costPerUnit) {
+	Product(String name, int stock, int costPerUnit) throws NegativeValueException {
 		setStock(stock);
 		setName(name);
 		setCostPerUnit(costPerUnit);
@@ -41,9 +44,9 @@ public abstract class Product {
 	// setters
 	
 		
-	public final void setStock(int stock) throws IllegalArgumentException {
+	public final void setStock(int stock) throws NegativeValueException {
 		if (stock < 0) {
-			throw new IllegalArgumentException();
+			throw new NegativeValueException("Cannot set stock to negative amount");
 		} else {
 			setStockTo(stock);
 		}
@@ -56,14 +59,14 @@ public abstract class Product {
 	
 	
 	
-	public boolean takeFromStock(int amount) throws IllegalArgumentException {
+	public void takeFromStock(int amount) throws NegativeValueException, StockExceededException {
 		if (amount < 0) {
-			throw new IllegalArgumentException();
+			throw new NegativeValueException("Cannot take a negative amount of products from stock.");
 		} else if (amount < getStock()) {
 			setStock(getStock() - amount);
-			return true;
+		} else {
+			throw new StockExceededException("Not enough items in stock");
 		}
-		return false;
 	}
 	
 	

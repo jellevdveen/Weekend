@@ -1,5 +1,7 @@
 package com.weekendopdracht.product;
 
+import com.weekendopdracht.exception.NegativeValueException;
+
 public class DefaultProduct extends Product {
 	private String name;
 	private int stock;
@@ -7,7 +9,7 @@ public class DefaultProduct extends Product {
 	private int taxPercentage = 19;
 	
 	// constructor(s)
-	public DefaultProduct(String name, int stock, int costPerUnit) {
+	public DefaultProduct(String name, int stock, int costPerUnit) throws NegativeValueException {
 		super(name, stock, costPerUnit);
 	}
 	

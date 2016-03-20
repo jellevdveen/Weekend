@@ -11,6 +11,8 @@ current work:
 
 -- Working on ProductOrder and Cart (za - 19.45)            --done
 
+-- working on new Exceptions (zo - 12.00)
+
 
 
 
@@ -26,6 +28,8 @@ to do on short term:
 
 -- meer subclasses van product
 
+-- add custom exception class(es)
+
 
 
 
@@ -33,7 +37,7 @@ later:
 
 -- deel 3: bezorging
 
--- Stock opslaat in txt.file of database
+-- Stock opslaan in txt.file of database
 
 -- kleine user interface om voorraad te beheren, met als eerst een kort menu dat je vraagt of je klant of beheerder bent.
 

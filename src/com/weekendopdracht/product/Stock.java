@@ -2,6 +2,8 @@ package com.weekendopdracht.product;
 
 import java.util.ArrayList;
 
+import com.weekendopdracht.exception.NegativeValueException;
+
 
 
 public abstract class Stock {
@@ -19,18 +21,14 @@ public abstract class Stock {
 	
 	// voegt een aantal toe aan een product als het in de lijst staat. Maakt een nieuw product als dit niet zo is
 	public static void addTo(String name, int amount, int costPerUnit, String type) {
-		if (amount > MAX_AMOUNT) {
-			System.out.println("Maximal stock of 9999 exceeded, stock set to 9999");
-			amount = MAX_AMOUNT;
-		}
-		
+				
 		for (Product p : stockList) {
 			if (p.getName().equals(name)) {
 				if (p.getStock() + amount <= MAX_AMOUNT) {
 					try {
 						p.setStock(p.getStock() + amount);
-					} catch (IllegalArgumentException IAE) {
-						System.out.println("Cannot set item stock to a negative value.");
+					} catch (NegativeValueException NVE) {
+						System.out.println(NVE.getMessage() + " (" + p.getName() + ")");
 						amount = 0;
 					}
 				} else {
@@ -43,7 +41,10 @@ public abstract class Stock {
 		}
 		
 		
-		
+		if (amount > MAX_AMOUNT) {
+			System.out.println("Maximal stock of 9999 exceeded, stock set to 9999");
+			amount = MAX_AMOUNT;
+		}
 		
 		
 		if (type.equals("Bulk Discount")) {
@@ -53,8 +54,8 @@ public abstract class Stock {
 		} else {
 			try{
 				stockList.add(new DefaultProduct(name, amount, costPerUnit));
-			} catch (IllegalArgumentException IAE) {
-				System.out.println("Cannot set item stock to a negative value.");
+			} catch (NegativeValueException NVE) {
+				System.out.println(NVE.getMessage());
 				amount = 0;
 			}
 		}

@@ -2,6 +2,8 @@ package com.weekendopdracht.order;
 
 import java.util.ArrayList;
 
+import com.weekendopdracht.exception.NegativeValueException;
+import com.weekendopdracht.exception.StockExceededException;
 import com.weekendopdracht.product.Product;
 
 // this class needs to make sure the placed ProductOrder is valid
@@ -22,20 +24,20 @@ public abstract class Cart {
 		
 		
 		try {
-			if (p.takeFromStock(amount)) {
-				for (ProductOrder po : shoppingList){
-					if (po.getProductName().equals(p.getName())) {
-						po.setOrderAmount(po.getOrderAmount() + amount);
-						return true;
-					}
+			p.takeFromStock(amount);
+			for (ProductOrder po : shoppingList){
+				if (po.getProductName().equals(p.getName())) {
+					po.setOrderAmount(po.getOrderAmount() + amount);
+					return true;
 				}
-				shoppingList.add(new ProductOrder(p, amount));
-				return true;
-			} else {
-				return false;
 			}
-		} catch (IllegalArgumentException IAE) {
-			System.out.println("Cannot order a negative amount of products");
+			shoppingList.add(new ProductOrder(p, amount));
+			return true;
+		} catch (NegativeValueException NVE) {
+			System.out.println(NVE.getMessage() + " (" + p.getName() + ")");
+			return false;
+		} catch (StockExceededException SEE) {
+			System.out.println(SEE.getMessage() + " (" + p.getName() + ")");
 			return false;
 		}
 		
