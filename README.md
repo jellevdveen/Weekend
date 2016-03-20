@@ -23,6 +23,7 @@ to do on short term:
 
 -- meer subclasses van product
 
+-- toString method aanpassen
 
 
 
