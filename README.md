@@ -7,13 +7,7 @@ Repository voor de weekendopdracht van YCP java traineeship maart 2016
 19-03
 current work:
 
--- Working on Main, Product and Voorraad Class (za - 16.45) --done
-
--- Working on ProductOrder and Cart (za - 19.45)            --done
-
--- working on new Exceptions (zo - 12.00)		    --done
-
--- working on Units (zo - 13.00)
+-- working on removal of items from cart (zo 13.30)
 
 
 
@@ -22,7 +16,6 @@ current work:
 
 to do on short term:
 
--- add Units as product properties and insert these in 	Product.toString
 
 -- make user interface to allow user to add products to cart from 	command line
 
