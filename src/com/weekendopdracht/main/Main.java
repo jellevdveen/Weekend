@@ -135,6 +135,7 @@ public class Main {
 			}
 		} catch (NumberFormatException NFE) {
 			System.out.println("Geen geldige hoeveelheid");
+			menuOrder(inputScanner, cart);
 		}
 	}
 	

@@ -72,6 +72,11 @@ public abstract class Stock {
 		addTo(name, amount, costPerUnit, 1, type);
 	}
 	
+	public static void addTo(String name, int amount, int costPerUnit) {
+		addTo(name, amount, costPerUnit, 1, "Default");
+	}
+	
+	
 	
 	
 	

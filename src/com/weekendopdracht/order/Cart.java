@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import com.weekendopdracht.exception.NegativeValueException;
 import com.weekendopdracht.exception.StockExceededException;
 import com.weekendopdracht.product.Product;
+import com.weekendopdracht.product.Stock;
 
 // this class needs to make sure the placed ProductOrder is valid
 
@@ -52,8 +53,10 @@ public class Cart {
 	public void remove(ProductOrder p, int amount){
 		if (p.getOrderAmount() - amount <= 0) {
 			this.shoppingList.remove(p);
+			Stock.addTo(p.getProductName(), p.getOrderAmount(), p.getOrderProduct().getCost());
 		} else {
 			p.setOrderAmount(p.getOrderAmount() - amount);
+			Stock.addTo(p.getProductName(), amount, p.getOrderProduct().getCost());
 		}
 		
 		

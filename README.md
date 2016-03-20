@@ -22,6 +22,8 @@ to do on short term:
 
 -- toString method aanpassen
 
+-- objecten waar niks meer van in voorraad is weghalen uit lijst
+
 
 
 
