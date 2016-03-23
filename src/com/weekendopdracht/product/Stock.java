@@ -54,7 +54,7 @@ public abstract class Stock {
 		// maakt nieuw product
 		try{
 			if (type.equals("Bulk Discount")) {
-				// add Bulk Discount product subclass
+				stockList.add(new BulkDiscount(name, amount, costPerUnit, unit));
 			} else if (type.equals("Limited Quantity")){
 				// add Limited Quantity product subclass
 			} else {

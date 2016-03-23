@@ -17,10 +17,10 @@ public class Main {
 		// in de arraylist Stock.stockList zijn alle products opgeslagen, hier worden er wat producten toegevoegd
 		// als we tijd teveel hebben kunnen we hier ook een user interface voor maken
 		Stock.addTo("Appel", 224, 600, 2, "Default");
-		Stock.addTo("Bungeejumptouw", 46, 500, 4, "Default");
+		Stock.addTo("Bungeejumptouw", 460, 500, 4, "Bulk Discount");
 		
 		Stock.addTo("Appel", -22, 6, "Default");
-		Stock.addTo("Cello", 81, 5000, "Default");
+		Stock.addTo("Cello", 81, 5000, 3, "Default");
 		
 		
 		Scanner inputScanner = new Scanner(System.in);

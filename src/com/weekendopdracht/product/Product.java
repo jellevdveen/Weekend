@@ -45,6 +45,7 @@ public abstract class Product {
 	public int getCost(int amount) {
 		return getCost(amount, true);
 	}
+	
 	public int getCost() {
 		return getCostPerUnit();
 	}
